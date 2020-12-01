@@ -5,6 +5,7 @@
  */
 package telas;
 
+import atividade_cg_i.Filtro;
 import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -202,7 +203,13 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        filtro();
+        Filtro filtro = new Filtro();
+
+       BufferedImage imad =  filtro.setColorizacao(img);
+               Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+                    Image.SCALE_SMOOTH);
+        ImageIcon imageIcon = new ImageIcon(imad);
+       jLabel1.setIcon(imageIcon);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

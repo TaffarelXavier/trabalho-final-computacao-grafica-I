@@ -26,7 +26,7 @@ public class Filtro {
      * @param buffer
      * @return
      */
-    private BufferedImage setEscalaCinza(BufferedImage buffer) {
+    public BufferedImage setEscalaCinza(BufferedImage buffer) {
         int r, g, b, width = buffer.getWidth(), height = buffer.getHeight();
 
         BufferedImage buffer_out = new BufferedImage(width, height, buffer.getType());
@@ -63,7 +63,7 @@ public class Filtro {
      * @param buffer
      * @return
      */
-    private BufferedImage setNegativa(BufferedImage buffer) {
+    public BufferedImage setNegativa(BufferedImage buffer) {
 
         int r, g, b, width = buffer.getWidth(), height = buffer.getHeight();
 
@@ -98,7 +98,7 @@ public class Filtro {
      * @param buffer
      * @return
      */
-    private BufferedImage setThreshold(BufferedImage buffer) {
+    public BufferedImage setThreshold(BufferedImage buffer) {
         int r, g, b, width = buffer.getWidth(), height = buffer.getHeight();
 
         BufferedImage buffer_out = new BufferedImage(width, height, buffer.getType());
@@ -139,7 +139,7 @@ public class Filtro {
      * @param buffer
      * @return
      */
-    private BufferedImage setColorizacao(BufferedImage buffer) {
+    public BufferedImage setColorizacao(BufferedImage buffer) {
         int r, g, b, width = buffer.getWidth(), height = buffer.getHeight();
 
         BufferedImage buffer_out = new BufferedImage(width, height, buffer.getType());
@@ -167,7 +167,7 @@ public class Filtro {
      * @param buffer
      * @return
      */
-    private BufferedImage setSepia(BufferedImage buffer) {
+    public BufferedImage setSepia(BufferedImage buffer) {
         double r, g, b, novoRed, novoGreen, novoBlue;
 
         int width = buffer.getWidth(), height = buffer.getHeight();
