@@ -6,7 +6,6 @@
 package telas;
 
 import atividade_cg_i.Filtro;
-import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -15,8 +14,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
-import javax.swing.JFrame;
 
 /**
  *
@@ -24,15 +23,25 @@ import javax.swing.JFrame;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
-    BufferedImage img = null;
+        BufferedImage bufferIn, bufferOut = null;
 
     /**
      * Creates new form TelaInicial
      */
+    void setIconButton(JButton button, String fileName) {
+        button.setIcon(new ImageIcon(((new ImageIcon(getClass().getResource("/imagens/" + fileName)).getImage()
+                .getScaledInstance(120, 120, Image.SCALE_SMOOTH)))));
+    }
+
     public TelaInicial() {
 
         initComponents();
 
+        setIconButton(jButtonCinza, "cinza.jpg");
+        setIconButton(jButtonColorizacao, "colorizacao.jpg");
+        setIconButton(jButtonNegativa, "negativa.jpg");
+        setIconButton(jButtonSepia, "sepia.jpg");
+        setIconButton(jButtonThreshold, "threshold.jpg");
     }
 
     /**
@@ -47,13 +56,15 @@ public class TelaInicial extends javax.swing.JFrame {
         abrirArquivoDialog = new javax.swing.JDialog();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jButtonCinza = new javax.swing.JButton();
+        jButtonSepia = new javax.swing.JButton();
+        jButtonThreshold = new javax.swing.JButton();
+        jButtonColorizacao = new javax.swing.JButton();
+        jButtonNegativa = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
 
         javax.swing.GroupLayout abrirArquivoDialogLayout = new javax.swing.GroupLayout(abrirArquivoDialog.getContentPane());
         abrirArquivoDialog.getContentPane().setLayout(abrirArquivoDialogLayout);
@@ -78,44 +89,84 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonCinza.setText("Cinza");
+        jButtonCinza.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonCinza.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonCinza.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonCinza.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonCinzaActionPerformed(evt);
             }
         });
 
-        jButton2.setText("jButton1");
+        jButtonSepia.setText("Sepia");
+        jButtonSepia.setToolTipText("");
+        jButtonSepia.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonSepia.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonSepia.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonSepia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSepiaActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("jButton1");
+        jButtonThreshold.setText("Threshold");
+        jButtonThreshold.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonThreshold.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonThreshold.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonThreshold.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonThresholdActionPerformed(evt);
+            }
+        });
 
-        jButton4.setText("jButton1");
+        jButtonColorizacao.setText("Colorização");
+        jButtonColorizacao.setToolTipText("");
+        jButtonColorizacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonColorizacao.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonColorizacaoActionPerformed(evt);
+            }
+        });
+
+        jButtonNegativa.setText("Negativa");
+        jButtonNegativa.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonNegativa.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonNegativa.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonNegativa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonNegativaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jButtonCinza, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonSepia, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jButtonThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jButtonColorizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButtonNegativa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButtonCinza, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonColorizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonNegativa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButtonSepia, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 53, Short.MAX_VALUE))
         );
 
         jMenu1.setText("Arquivo");
@@ -128,6 +179,14 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         jMenu1.add(jMenuItem1);
 
+        jMenuItem2.setText("Salvar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem2);
+
         jMenuBar1.add(jMenu1);
 
         setJMenuBar(jMenuBar1);
@@ -137,20 +196,20 @@ public class TelaInicial extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(20, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(20, 20, 20))
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(96, 96, 96))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 521, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(20, 20, 20))
@@ -165,31 +224,21 @@ public class TelaInicial extends javax.swing.JFrame {
             JFileChooser openFile = new JFileChooser();
             openFile.setDialogTitle("Salvar imagem copiada");
             int result = openFile.showOpenDialog(null);
-            String filename = openFile.getSelectedFile().getAbsolutePath();
-            img = ImageIO.read(new File(filename));
-            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                    Image.SCALE_SMOOTH);
-            ImageIcon imageIcon = new ImageIcon(dimg);
-            jLabel1.setIcon(imageIcon);
+            if (result == 0) {
+                String filename = openFile.getSelectedFile().getAbsolutePath();
+                bufferIn = ImageIO.read(new File(filename));
+                Image dimg = bufferIn.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+                        Image.SCALE_SMOOTH);
+                ImageIcon imageIcon = new ImageIcon(dimg);
+                jLabel1.setIcon(imageIcon);
+            }
+
         } catch (IOException ex) {
             Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     void filtro() {
-        try {
-            JFileChooser openFile = new JFileChooser();
-            openFile.setDialogTitle("Salvar imagem copiada");
-            int result = openFile.showOpenDialog(null);
-            String filename = openFile.getSelectedFile().getAbsolutePath();
-            img = ImageIO.read(new File(filename));
-            Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                    Image.SCALE_SMOOTH);
-            ImageIcon imageIcon = new ImageIcon(dimg);
-            jLabel1.setIcon(imageIcon);
-        } catch (IOException ex) {
-            Logger.getLogger(TelaInicial.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+
+
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
         abrirArquivo();
@@ -201,16 +250,50 @@ public class TelaInicial extends javax.swing.JFrame {
         abrirArquivo();
     }//GEN-LAST:event_jLabel1MouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    void aplicarFiltro(BufferedImage bufferInputIn) {
+        // imad
+        Image dimg = bufferIn.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
+                Image.SCALE_SMOOTH);
+        jLabel1.setIcon(new ImageIcon(((new ImageIcon(bufferInputIn))
+                .getImage().getScaledInstance(jLabel1.getWidth(),
+                        jLabel1.getHeight(), Image.SCALE_SMOOTH))));
+    }
+
+    private void jButtonCinzaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCinzaActionPerformed
+        // TODO add your handling code here:
+        bufferOut = new Filtro().setEscalaCinza(bufferIn);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonCinzaActionPerformed
+
+    private void jButtonSepiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSepiaActionPerformed
+        // TODO add your handling code here:
+        bufferOut = new Filtro().setSepia(bufferIn);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonSepiaActionPerformed
+
+    private void jButtonThresholdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonThresholdActionPerformed
+        // TODO add your handling code here:,
+        bufferOut = new Filtro().setThreshold(bufferIn);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonThresholdActionPerformed
+
+    private void jButtonColorizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColorizacaoActionPerformed
+        // TODO add your handling code here:
+        bufferOut = new Filtro().setColorizacao(bufferIn);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonColorizacaoActionPerformed
+
+    private void jButtonNegativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNegativaActionPerformed
+        // TODO add your handling code here:
+        bufferOut = new Filtro().setNegativa(bufferIn);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonNegativaActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
         Filtro filtro = new Filtro();
-
-       BufferedImage imad =  filtro.setColorizacao(img);
-               Image dimg = img.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
-                    Image.SCALE_SMOOTH);
-        ImageIcon imageIcon = new ImageIcon(imad);
-       jLabel1.setIcon(imageIcon);
-    }//GEN-LAST:event_jButton1ActionPerformed
+        filtro.save(bufferOut, "teste.jpeg");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -249,14 +332,16 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog abrirArquivoDialog;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButtonCinza;
+    private javax.swing.JButton jButtonColorizacao;
+    private javax.swing.JButton jButtonNegativa;
+    private javax.swing.JButton jButtonSepia;
+    private javax.swing.JButton jButtonThreshold;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

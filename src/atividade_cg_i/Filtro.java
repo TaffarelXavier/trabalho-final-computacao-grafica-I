@@ -238,7 +238,7 @@ public class Filtro {
      * @param buffer
      * @param filename
      */
-    private void save(BufferedImage buffer, String filename) {
+    public void save(BufferedImage buffer, String filename) {
 
         JFileChooser saveFile = new JFileChooser();
 
