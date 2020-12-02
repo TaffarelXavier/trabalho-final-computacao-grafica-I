@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileFilter;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -240,17 +242,21 @@ public class Filtro {
      */
     public void save(BufferedImage buffer, String filename) {
 
-        JFileChooser saveFile = new JFileChooser();
+        JFileChooser saveChooser = new JFileChooser();
 
-        saveFile.setSelectedFile(new File(filename));
+        FileFilter imageFilter = new FileNameExtensionFilter(
+                "Arquivos de imagens", ImageIO.getReaderFileSuffixes());
+        saveChooser.setFileFilter(imageFilter);
 
-        saveFile.setDialogTitle("Salvar imagem copiada");
+        saveChooser.setSelectedFile(new File(filename));
 
-        int result = saveFile.showSaveDialog(saveFile);
+        saveChooser.setDialogTitle("Salvar imagem copiada");
 
-        if (result == saveFile.APPROVE_OPTION) { //Caso o usuário clique em confirmar.
+        int result = saveChooser.showSaveDialog(saveChooser);
+
+        if (result == saveChooser.APPROVE_OPTION) { //Caso o usuário clique em confirmar.
             try {
-                File saida = new File(saveFile.getSelectedFile().getAbsolutePath());
+                File saida = new File(saveChooser.getSelectedFile().getAbsolutePath());
 
                 ImageIO.write(buffer, "jpg", saida);
 
