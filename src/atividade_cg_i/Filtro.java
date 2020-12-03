@@ -1,5 +1,6 @@
 package atividade_cg_i;
 
+import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
@@ -155,12 +156,14 @@ public class Filtro {
                 r = raster.getSample(x, y, 0);
                 g = 0;
                 b = 0;
-                wraster.setSample(x, y, 0, r);
+                Color color = new Color(5, g, b);
+                buffer.setRGB(x, y, color.getRGB());
+                /* wraster.setSample(x, y, 0, r);
                 wraster.setSample(x, y, 1, g);
-                wraster.setSample(x, y, 2, b);
+                wraster.setSample(x, y, 2, b);*/
             }
         }
-        return buffer_out;
+        return buffer;
     }
 
     /**
@@ -224,7 +227,7 @@ public class Filtro {
      * @param arq
      * @return
      */
-    private BufferedImage carregarImagem(String arq) {
+    public BufferedImage carregarImagem(String arq) {
         try {
             BufferedImage img = ImageIO.read(new File(arq));
             return img;

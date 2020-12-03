@@ -12,7 +12,7 @@ Crie a classe Filtros e implemente os seguintes filtros:
 - Colorização de Imagem
 - Sépia
  */
-
+import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 /**
@@ -26,16 +26,17 @@ public class Atividade_CG_I {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
-        JOptionPane.showMessageDialog(null, "Olá, professor.\nEste é o trabalho:"
-                + "\"Filtros\"\n"
-                + "A seguir, aparecerão algumas caixas de diálogos.\n"
-                + "Salve as imagens no disco com os nomes desejados. Clique em 'OK' para continuar.");
-        
-        Filtro pdi = new Filtro();
 
-        pdi.executarPrograma();
+        Filtro pdi = new Filtro();
+        
+        BufferedImage bufferIn, bufferOut;
+
+        bufferIn = pdi.carregarImagem("cachorro-original.jpg");
+        
+        bufferOut = pdi.setEscalaCinza(bufferIn);
+        
+        pdi.save(bufferOut, "taffarel.jpeg");
+        // pdi.executarPrograma();
     }
 
-   
 }
