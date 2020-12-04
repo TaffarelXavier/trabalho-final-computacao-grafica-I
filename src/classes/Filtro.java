@@ -139,6 +139,36 @@ public class Filtro {
     }
 
     /**
+     *
+     * @param redPercent
+     * @param greenPercent
+     * @param bluePercent
+     * @throws IOException
+     */
+    public void applyColorFilter(int redPercent, int greenPercent, int bluePercent) throws IOException {
+
+        File inputImage = new File("cachorro-original.jpg");//File path for input image
+        BufferedImage image = ImageIO.read(inputImage);
+
+        for (int y = 0; y < image.getHeight(); y++) {
+            for (int x = 0; x < image.getWidth(); x++) {
+                int pixel = image.getRGB(x, y);
+
+                int alpha = (pixel >> 24) & 0xff;
+                int red = (pixel >> 16) & 0xff;
+                int green = (pixel >> 8) & 0xff;
+                int blue = pixel & 0xff;
+
+                pixel = (alpha << 24) | (redPercent * red / 100 << 16) | (greenPercent * green / 100 << 8) | (bluePercent * blue / 100);
+
+                image.setRGB(x, y, pixel);
+            }
+        }
+
+        ImageIO.write(image, "jpg", new File("output-cachorro-original.jpg")); //File path to store resulting image.
+    }
+
+    /**
      * Define a imagem com o filtro de Colorizacao.
      *
      * @param buffer

@@ -6,7 +6,11 @@
 package telas;
 
 import classes.DAO;
+import classes.Filtro;
 import java.awt.Color;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -78,6 +82,11 @@ public class TelaColorDialog extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         DAO.setColor(jColorChooser1.getColor());
+        try {
+            new Filtro().applyColorFilter(jColorChooser1.getColor().getRed(), jColorChooser1.getColor().getGreen(), jColorChooser1.getColor().getBlue());
+        } catch (IOException ex) {
+            Logger.getLogger(TelaColorDialog.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
