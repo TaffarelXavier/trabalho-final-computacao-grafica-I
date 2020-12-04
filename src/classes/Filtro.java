@@ -1,5 +1,7 @@
-package atividade_cg_i;
+package classes;
 
+import telas.Atividade_CG_I;
+import classes.DAO;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.awt.image.Raster;
@@ -151,19 +153,24 @@ public class Filtro {
 
         WritableRaster wraster = buffer_out.getRaster();
 
+        System.out.println(DAO.getColor().toString());
+
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
+
+                int L = (int) 0.2126 * DAO.getColor().getRed() + (int) 0.7152 * DAO.getColor().getGreen() + (int) 0.0722 * DAO.getColor().getBlue();
+
                 r = 0;
-                g = raster.getSample(x, y, 1);
-                b = raster.getSample(x, y, 1);
-                Color color = new Color(200, 200, 200);
-                buffer.setRGB(x, y, color.getRGB());
-                /* wraster.setSample(x, y, 0, r);
+                g = 0;
+                b = raster.getSample(x, y, 0);
+
+                wraster.setSample(x, y, 0, r);
                 wraster.setSample(x, y, 1, g);
-                wraster.setSample(x, y, 2, b);*/
+                wraster.setSample(x, y, 2, L);
+
             }
         }
-        return buffer;
+        return buffer_out;
     }
 
     /**

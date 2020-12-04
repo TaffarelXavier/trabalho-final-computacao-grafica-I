@@ -1,4 +1,4 @@
-package atividade_cg_i;
+package telas;
 
 /*
 Item postado em 23 de nov. Editado às 23 de nov.
@@ -12,6 +12,7 @@ Crie a classe Filtros e implemente os seguintes filtros:
 - Colorização de Imagem
 - Sépia
  */
+import classes.Filtro;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
 
