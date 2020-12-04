@@ -31,9 +31,9 @@ public class Atividade_CG_I {
         
         BufferedImage bufferIn, bufferOut;
 
-        bufferIn = pdi.carregarImagem("cachorro-original.jpg");
+        bufferIn = pdi.carregarImagem("filename.jpg");
         
-        bufferOut = pdi.setEscalaCinza(bufferIn);
+        bufferOut = pdi.setColorizacao(bufferIn);
         
         pdi.save(bufferOut, "taffarel.jpeg");
         // pdi.executarPrograma();

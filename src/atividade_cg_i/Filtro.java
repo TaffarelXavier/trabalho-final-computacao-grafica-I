@@ -153,10 +153,10 @@ public class Filtro {
 
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
-                r = raster.getSample(x, y, 0);
-                g = 0;
-                b = 0;
-                Color color = new Color(5, g, b);
+                r = 0;
+                g = raster.getSample(x, y, 1);
+                b = raster.getSample(x, y, 1);
+                Color color = new Color(200, 200, 200);
                 buffer.setRGB(x, y, color.getRGB());
                 /* wraster.setSample(x, y, 0, r);
                 wraster.setSample(x, y, 1, g);

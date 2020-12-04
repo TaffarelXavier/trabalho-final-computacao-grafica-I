@@ -87,15 +87,23 @@
                   <Component id="jTextFieldUrl" max="32767" attributes="0"/>
                   <Component id="jLabel1" pref="788" max="32767" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButtonSepia" min="-2" pref="120" max="-2" attributes="0"/>
-                      <Component id="jButtonColorizacao" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jButtonSepia" min="-2" pref="120" max="-2" attributes="0"/>
+                              <Component id="jButtonColorizacao" min="-2" pref="120" max="-2" attributes="0"/>
+                          </Group>
+                          <Component id="jButtonCinza" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="jButtonThreshold" min="-2" pref="120" max="-2" attributes="0"/>
+                          <Component id="jButtonNegativa" min="-2" pref="120" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
-                  <Component id="jButtonCinza" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                  <Component id="jButtonThreshold" min="-2" pref="120" max="-2" attributes="0"/>
-                  <Component id="jButtonNegativa" min="-2" pref="120" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace min="0" pref="20" max="32767" attributes="0"/>
           </Group>
@@ -120,8 +128,11 @@
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jTextFieldUrl" min="-2" pref="24" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="44" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jTextFieldUrl" min="-2" pref="24" max="-2" attributes="0"/>
+                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="0" pref="30" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -243,6 +254,11 @@
           </Border>
         </Property>
         <Property name="requestFocusEnabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
       </Properties>
     </Component>
   </SubComponents>
