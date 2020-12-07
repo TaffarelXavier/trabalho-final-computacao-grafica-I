@@ -1,6 +1,5 @@
 package classes;
 
-import telas.Atividade_CG_I;
 import classes.DAO;
 import java.awt.Color;
 import java.awt.image.BufferedImage;
@@ -168,13 +167,45 @@ public class Filtro {
         ImageIO.write(image, "jpg", new File("output-cachorro-original.jpg")); //File path to store resulting image.
     }
 
+    public BufferedImage threshold(BufferedImage image) {
+        try {
+            int limiar = 100;
+            int width = image.getWidth();
+            int height = image.getHeight();
+
+            for (int i = 0; i < width; i++) {
+                for (int j = 0; j < height; j++) {
+                    int rgb = image.getRGB(i, j);
+                    int r = (int) ((rgb & 0x00FF0000) >>> 16);
+                    int g = (int) ((rgb & 0x0000FF00) >>> 8);
+                    int b = (int) (rgb & 0x000000FF);
+
+                    int media = (r + g + b) / 3;
+                    Color white = new Color(0, 75, 89);
+                    Color black = new Color(0, 0, 0);
+
+                    if (media < limiar) {
+                        image.setRGB(i, j, black.getRGB());
+                    } else {
+                        image.setRGB(i, j, white.getRGB());
+                    }
+                }
+            }
+            return image;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
+    }
+
     /**
      * Define a imagem com o filtro de Colorizacao.
      *
      * @param buffer
+     * @param tipo
      * @return
      */
-    public BufferedImage setColorizacao(BufferedImage buffer) {
+    public BufferedImage setColorizacao(BufferedImage buffer, int tipo) {
         int r, g, b, width = buffer.getWidth(), height = buffer.getHeight();
 
         BufferedImage buffer_out = new BufferedImage(width, height, buffer.getType());
@@ -183,20 +214,30 @@ public class Filtro {
 
         WritableRaster wraster = buffer_out.getRaster();
 
-        System.out.println(DAO.getColor().toString());
-
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
 
-                int L = (int) 0.2126 * DAO.getColor().getRed() + (int) 0.7152 * DAO.getColor().getGreen() + (int) 0.0722 * DAO.getColor().getBlue();
-
-                r = 0;
-                g = 0;
-                b = raster.getSample(x, y, 0);
+                switch (tipo) {
+                    case 1:
+                        r = raster.getSample(x, y, 0); // red
+                        g = 0;
+                        b = 0;
+                        break;
+                    case 2:
+                        r = 0;
+                        g = 0;
+                        b = raster.getSample(x, y, 0); // blue
+                        break;
+                    default:
+                        r = 0;
+                        g = raster.getSample(x, y, 0); // green
+                        b = 0;
+                        break;
+                }
 
                 wraster.setSample(x, y, 0, r);
                 wraster.setSample(x, y, 1, g);
-                wraster.setSample(x, y, 2, L);
+                wraster.setSample(x, y, 2, b);
 
             }
         }
@@ -302,22 +343,9 @@ public class Filtro {
 
                 JOptionPane.showMessageDialog(null, "Imagem salva com sucesso", "Computação Gráfica I", 1);
             } catch (IOException ex) {
-                Logger.getLogger(Atividade_CG_I.class.getName()).log(Level.SEVERE, null, ex);
+               
             }
         }
 
-    }
-
-    /**
-     * Executa os métodos e funções acima.
-     */
-    public void executarPrograma() {
-        this.bufferIn = this.carregarImagem("cachorro-original.jpg");
-        this.save(this.setEscalaCinza(bufferIn), "cinza.jpg");
-        this.save(this.setNegativa(bufferIn), "negativa.jpg");
-        this.save(this.setThreshold(bufferIn), "threshold.jpg");
-        this.save(this.setColorizacao(bufferIn), "colorizacao.jpg");
-        this.save(this.setSepia(bufferIn), "sepia.jpg");
-        JOptionPane.showMessageDialog(null, "Sucesso! Todas as imagens foram salvas no disco.", "Computação Gráfica", 1);
     }
 }

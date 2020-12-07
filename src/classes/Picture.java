@@ -6,6 +6,7 @@
 package classes;
 
 import java.awt.Color;
+import java.awt.Desktop;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -63,7 +64,8 @@ public class Picture {
     public void show() {
         try {
 
-            File saveAs = new File("file" + new Random().nextInt() + ".png");
+            String fileName = "filecadeado.png";
+            File saveAs = new File(fileName);
             ImageIO.write(buf_img, "png", saveAs);
         } catch (IOException ex) {
             Logger.getLogger(Picture.class.getName()).log(Level.SEVERE, null, ex);
@@ -91,13 +93,22 @@ class ColorSeparation {
                 int g = color.getGreen();
                 int b = color.getBlue();
                 double L = 0.2126 * r + 0.7152 * g + 0.0722 * b;
-                pictureR.set(col, row, new Color((int) 255 * (int) (L / 255), 153 * (int) L / 255, 51 * (int) L / 255));
+//                pictureR.set(col, row, new Color((int) 0 * (int) (L / 255), 153 * (int) L / 255, 51 * (int) L / 255));
+                System.out.println((int) 10 * (int) (L / 16));
+                pictureR.set(col, row, new Color((int) 100 * (int) (L / 16), 153 * (int) L / 255, 51 * (int) L / 255));
             }
         }
 
         // display  picture in its own window
         pictureR.show();
-
+        if (Desktop.isDesktopSupported()) {
+            try {
+                Desktop desktop = Desktop.getDesktop();
+                File myFile = new File("filecadeado.png");
+                desktop.open(myFile);
+            } catch (IOException ex) {
+            }
+        }
     }
 
 }

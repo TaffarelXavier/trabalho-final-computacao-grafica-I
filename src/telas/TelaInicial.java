@@ -6,7 +6,6 @@
 package telas;
 
 import classes.Filtro;
-import classes.DAO;
 import java.awt.Color;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
@@ -28,7 +27,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class TelaInicial extends javax.swing.JFrame {
 
-    BufferedImage bufferIn, bufferOut = null;
+    BufferedImage bufferIn, bufferOut, bufferOriginal = null;
     private boolean buttosDisabled = true;
     private String nomeDoArquivoSalvar = null;
 
@@ -42,20 +41,25 @@ public class TelaInicial extends javax.swing.JFrame {
 
     void setDisablesButtons(boolean disabled) {
         jButtonCinza.setEnabled(disabled);
-        jButtonColorizacao.setEnabled(disabled);
+        // jButtonColorizacao.setEnabled(disabled);
         jButtonNegativa.setEnabled(disabled);
         jButtonSepia.setEnabled(disabled);
         jButtonThreshold.setEnabled(disabled);
+        jButtonOriginal.setEnabled(disabled);
+
+        jButtonColorizacaoRed.setEnabled(disabled);
+        jButtonColorizacaoGreen.setEnabled(disabled);
+        jButtonColorizacaoBlue.setEnabled(disabled);
     }
 
     public TelaInicial() {
 
         initComponents();
         setIconButton(jButtonCinza, "cinza.jpg");
-        setIconButton(jButtonColorizacao, "colorizacao.jpg");
         setIconButton(jButtonNegativa, "negativa.jpg");
         setIconButton(jButtonSepia, "sepia.jpg");
         setIconButton(jButtonThreshold, "threshold.jpg");
+        setIconButton(jButtonOriginal, "original.png");
         setDisablesButtons(false);
 
         definirImagemPadrao();
@@ -77,10 +81,12 @@ public class TelaInicial extends javax.swing.JFrame {
         jButtonCinza = new javax.swing.JButton();
         jButtonSepia = new javax.swing.JButton();
         jButtonThreshold = new javax.swing.JButton();
-        jButtonColorizacao = new javax.swing.JButton();
         jButtonNegativa = new javax.swing.JButton();
         jTextFieldUrl = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        jButtonOriginal = new javax.swing.JButton();
+        jButtonColorizacaoRed = new javax.swing.JButton();
+        jButtonColorizacaoBlue = new javax.swing.JButton();
+        jButtonColorizacaoGreen = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -158,18 +164,6 @@ public class TelaInicial extends javax.swing.JFrame {
             }
         });
 
-        jButtonColorizacao.setToolTipText("Definir Colorização");
-        jButtonColorizacao.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jButtonColorizacao.setBorderPainted(false);
-        jButtonColorizacao.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButtonColorizacao.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
-        jButtonColorizacao.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButtonColorizacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButtonColorizacaoActionPerformed(evt);
-            }
-        });
-
         jButtonNegativa.setToolTipText("Definir como Negativa");
         jButtonNegativa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jButtonNegativa.setBorderPainted(false);
@@ -187,10 +181,51 @@ public class TelaInicial extends javax.swing.JFrame {
         jTextFieldUrl.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         jTextFieldUrl.setRequestFocusEnabled(false);
 
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jButtonOriginal.setToolTipText("Definir para imagem original");
+        jButtonOriginal.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonOriginal.setBorderPainted(false);
+        jButtonOriginal.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonOriginal.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonOriginal.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonOriginal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jButtonOriginalActionPerformed(evt);
+            }
+        });
+
+        jButtonColorizacaoRed.setBackground(new java.awt.Color(255, 0, 0));
+        jButtonColorizacaoRed.setToolTipText("Definir Colorização");
+        jButtonColorizacaoRed.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonColorizacaoRed.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonColorizacaoRed.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacaoRed.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacaoRed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonColorizacaoRedActionPerformed(evt);
+            }
+        });
+
+        jButtonColorizacaoBlue.setBackground(new java.awt.Color(0, 0, 255));
+        jButtonColorizacaoBlue.setToolTipText("Definir Colorização");
+        jButtonColorizacaoBlue.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonColorizacaoBlue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonColorizacaoBlue.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacaoBlue.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacaoBlue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonColorizacaoBlueActionPerformed(evt);
+            }
+        });
+
+        jButtonColorizacaoGreen.setBackground(new java.awt.Color(0, 255, 0));
+        jButtonColorizacaoGreen.setToolTipText("Definir Colorização");
+        jButtonColorizacaoGreen.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        jButtonColorizacaoGreen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonColorizacaoGreen.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacaoGreen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonColorizacaoGreen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonColorizacaoGreenActionPerformed(evt);
             }
         });
 
@@ -228,47 +263,57 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 766, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jTextFieldUrl)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 788, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jButtonCinza, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonSepia, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 647, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButtonColorizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonNegativa, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(38, 38, 38)
-                        .addComponent(jButton1)))
-                .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jButtonThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(jButtonSepia, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButtonCinza, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButtonOriginal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jButtonColorizacaoRed, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jButtonColorizacaoGreen, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jButtonColorizacaoBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jButtonNegativa, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 543, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButtonCinza, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonSepia, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButtonThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(5, 5, 5)
+                        .addComponent(jButtonOriginal, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonCinza, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSepia, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonThreshold, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonNegativa, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButtonColorizacao, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton1))))
-                .addGap(14, 14, 14)
+                            .addComponent(jButtonColorizacaoGreen, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonColorizacaoRed, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButtonColorizacaoBlue, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButtonNegativa, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(61, 61, 61))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 616, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jTextFieldUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 51, Short.MAX_VALUE))
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -291,6 +336,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 jTextFieldUrl.setText(filename);
                 bufferIn = ImageIO.read(new File(filename));
                 bufferOut = bufferIn;
+                bufferOriginal = bufferIn;
                 Image dimg = bufferIn.getScaledInstance(jLabel1.getWidth(), jLabel1.getHeight(),
                         Image.SCALE_SMOOTH);
                 ImageIcon imageIcon = new ImageIcon(dimg);
@@ -341,12 +387,6 @@ public class TelaInicial extends javax.swing.JFrame {
         aplicarFiltro(bufferOut);
     }//GEN-LAST:event_jButtonThresholdActionPerformed
 
-    private void jButtonColorizacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColorizacaoActionPerformed
-        // TODO add your handling code here:
-        bufferOut = new Filtro().setColorizacao(bufferIn);
-        aplicarFiltro(bufferOut);
-    }//GEN-LAST:event_jButtonColorizacaoActionPerformed
-
     private void jButtonNegativaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNegativaActionPerformed
         // TODO add your handling code here:
         bufferOut = new Filtro().setNegativa(bufferIn);
@@ -372,15 +412,33 @@ public class TelaInicial extends javax.swing.JFrame {
         setDisablesButtons(false);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        new TelaColorDialog(this, true).setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         // TODO add your handling code here:
 //        jLabel2.setText(DAO.getColor().toString());
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jButtonOriginalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOriginalActionPerformed
+        // TODO add your handling code here:
+        aplicarFiltro(bufferOriginal);
+    }//GEN-LAST:event_jButtonOriginalActionPerformed
+
+    private void jButtonColorizacaoRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColorizacaoRedActionPerformed
+        // TODO add your handling code here:
+        bufferOut = new Filtro().setColorizacao(bufferIn, 1);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonColorizacaoRedActionPerformed
+
+    private void jButtonColorizacaoBlueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColorizacaoBlueActionPerformed
+        // TODO add your handling code here:
+        bufferOut = new Filtro().setColorizacao(bufferIn, 2);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonColorizacaoBlueActionPerformed
+
+    private void jButtonColorizacaoGreenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonColorizacaoGreenActionPerformed
+        // TODO add your handling code here:
+        bufferOut = new Filtro().setColorizacao(bufferIn, 3);
+        aplicarFiltro(bufferOut);
+    }//GEN-LAST:event_jButtonColorizacaoGreenActionPerformed
 
     /**
      * @param args the command line arguments
@@ -417,10 +475,12 @@ public class TelaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog abrirArquivoDialog;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCinza;
-    private javax.swing.JButton jButtonColorizacao;
+    private javax.swing.JButton jButtonColorizacaoBlue;
+    private javax.swing.JButton jButtonColorizacaoGreen;
+    private javax.swing.JButton jButtonColorizacaoRed;
     private javax.swing.JButton jButtonNegativa;
+    private javax.swing.JButton jButtonOriginal;
     private javax.swing.JButton jButtonSepia;
     private javax.swing.JButton jButtonThreshold;
     private javax.swing.JLabel jLabel1;
